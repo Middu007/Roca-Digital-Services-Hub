@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Roca Digital Services | HUB: ADMIRAL Pay + Zurich</title>
+  <meta name="description" content="Roca Digital Services HUB: ADMIRAL Pay per punti vendita e richieste informazioni soluzioni Zurich (Vita, Attività Commerciali, Casa e Famiglia)." />
+
+  <style>
+    :root{
+      --bg:#070A14; --card:#0E1630;
+      --text:#EAF0FF; --muted:#B8C3E6; --line:rgba(255,255,255,.12);
+      --accent:#7C5CFF; --accent2:#00D4FF; --ok:#21D07A;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 12% 0%, rgba(124,92,255,.35), transparent 58%),
+        radial-gradient(900px 600px at 92% 12%, rgba(0,212,255,.20), transparent 60%),
+        var(--bg);
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1120px;margin:0 auto;padding:22px 18px 44px}
+
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:14px;
+      padding:14px;border:1px solid var(--line);border-radius:18px;
+      background:rgba(14,22,48,.55);backdrop-filter:blur(6px);
+    }
+    .brand{display:flex;align-items:center;gap:12px;min-width:260px}
+    .brandTitle{font-weight:840;letter-spacing:.2px}
+    .brandSub{color:var(--muted);font-size:13px;margin-top:2px}
+
+    nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    .navLink{
+      padding:10px 12px;border:1px solid var(--line);border-radius:999px;
+      color:var(--muted);font-size:14px;background:rgba(7,10,20,.35);
+    }
+
+    .hero{margin-top:14px;display:grid;grid-template-columns:1.2fr .8fr;gap:14px;align-items:stretch}
+    .card{
+      background:rgba(14,22,48,.68);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+      backdrop-filter:blur(6px);
+    }
+
+    .svgBox{
+      width:56px;height:56px;border-radius:14px;
+      display:grid;place-items:center;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      overflow:hidden;
+    }
+    .svgBox.small{width:36px;height:36px;border-radius:10px}
+    .svgBox svg{width:82%;height:82%;display:block}
+
+    .svgBox img{width:82%;height:82%;object-fit:contain;display:block}
+
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;color:var(--muted);
+      font-size:13px;border:1px solid var(--line);
+      padding:8px 10px;border-radius:999px;background:rgba(7,10,20,.35);
+    }
+    .dot{width:9px;height:9px;border-radius:99px;background:var(--ok)}
+
+    h1{margin:12px 0 10px;font-size:40px;line-height:1.07}
+    .lead{margin:0;color:var(--muted);font-size:16px;line-height:1.55}
+
+    .partnerRow{
+      margin-top:14px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+      padding:12px;border:1px solid var(--line);border-radius:16px;
+      background:rgba(7,10,20,.22);
+    }
+    .partnerPill{
+      display:flex;align-items:center;gap:10px;
+      border:1px solid var(--line);border-radius:14px;
+      padding:10px 12px;background:rgba(14,22,48,.45);
+      transition:transform .12s ease, border-color .12s ease;
+    }
+    .partnerPill:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.22)}
+    .partnerText{display:flex;flex-direction:column;line-height:1.15}
+    .partnerText b{font-size:14px}
+    .partnerText span{font-size:12px;color:var(--muted)}
+    .mini{margin-top:10px;color:var(--muted);font-size:12.5px;line-height:1.55}
+
+    .ctaRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .btn{
+      cursor:pointer;border:0;border-radius:14px;
+      padding:12px 14px;font-weight:780;
+      display:inline-flex;align-items:center;gap:10px;
+    }
+    .btnPrimary{color:#06101C;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+    .btnGhost{color:var(--text);background:transparent;border:1px solid var(--line)}
+
+    .grid3{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .feature{background:rgba(11,18,40,.55);border:1px solid var(--line);border-radius:16px;padding:14px}
+    .feature h3{margin:0 0 6px;font-size:15px}
+    .feature p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.45}
+
+    .section{margin-top:14px}
+    .twoCol{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    h2{margin:0 0 10px;font-size:20px}
+    ul{margin:10px 0 0;padding-left:18px;color:var(--muted);line-height:1.6}
+
+    .promo{
+      margin-top:12px;
+      border:1px solid rgba(33,208,122,.28);
+      background:rgba(33,208,122,.06);
+      border-radius:16px;
+      padding:12px;
+      color:var(--muted);
+      font-size:13px; line-height:1.55;
+    }
+    .promo b{color:var(--text)}
+    .callout{
+      margin-top:12px;
+      border:1px dashed rgba(255,255,255,.22);
+      border-radius:16px;
+      padding:12px;
+      color:var(--muted);
+      font-size:13px;line-height:1.55;
+      background:rgba(7,10,20,.25);
+    }
+
+    form{display:grid;gap:10px;margin-top:10px}
+    label{font-size:13px;color:var(--muted)}
+    input,select,textarea{
+      width:100%;
+      padding:12px;border-radius:14px;border:1px solid var(--line);
+      background:rgba(7,10,20,.45);color:var(--text);outline:none;
+    }
+    textarea{min-height:96px;resize:vertical}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .fineprint{color:var(--muted);font-size:12px;line-height:1.5;margin-top:8px}
+
+    footer{margin-top:16px;color:var(--muted);font-size:12px;line-height:1.55;padding:14px 2px}
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .grid3{grid-template-columns:1fr}
+      .twoCol{grid-template-columns:1fr}
+      .row{grid-template-columns:1fr}
+      h1{font-size:34px}
+      nav{justify-content:flex-start}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <!-- LOGO ROCA (placeholder SVG). Sostituiscilo con il tuo SVG quando vuoi -->
+        <div class="svgBox" aria-label="Roca Digital Services logo">
+          <img src="./roca-logo.jpg" alt="Roca Digital Services" style="width:100%;height:100%;object-fit:contain;display:block;background:#fff;border-radius:12px;" />
+        </div>
+
+        <div>
+          <div class="brandTitle">Roca Digital Services</div>
+          <div class="brandSub">HUB ufficiale: attivazioni, onboarding e supporto</div>
+        </div>
+      </div>
+
+      <nav>
+        <a class="navLink" href="#admiral">ADMIRAL Pay</a>
+        <a class="navLink" href="#zurich">Zurich</a>
+        <a class="navLink" href="#contatto">Richiedi contatto</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="card">
+        <div class="badge"><span class="dot"></span> Per punti vendita • Per famiglie • Un solo contatto (Roca)</div>
+        <h1>Attiva servizi in negozio e proteggi ciò che conta, con un HUB unico.</h1>
+        <p class="lead">
+          Con Roca Digital Services accedi a: ADMIRAL Pay per ampliare l’offerta in negozio (pagamenti, ricariche e servizi al cittadino)
+          e Zurich per soluzioni di protezione (Vita/TCM, Attività Commerciali, Casa e Famiglia).
+        </p>
+
+        <div class="partnerRow" aria-label="Partner">
+          <a class="partnerPill" href="https://www.admiralpay.it" target="_blank" rel="noreferrer" title="Vai al sito ADMIRAL Pay">
+            <div class="svgBox small" aria-label="ADMIRAL Pay (link al sito ufficiale)">
+              <img src="./logo admiral.png" alt="ADMIRAL Pay" style="width:100%;height:100%;object-fit:contain;display:block;background:#fff;border-radius:8px;" />
+            </div>
+            <div class="partnerText"><b>ADMIRAL Pay</b><span>Sito ufficiale</span></div>
+          </a>
+
+          <a class="partnerPill" href="https://www.zurich.it" target="_blank" rel="noreferrer" title="Vai al sito Zurich">
+            <div class="svgBox small" aria-label="Zurich (link al sito ufficiale)">
+              <img src="./Zurich Logo.png" alt="Zurich" style="width:100%;height:100%;object-fit:contain;display:block;background:#fff;border-radius:8px;" />
+            </div>
+            <div class="partnerText"><b>Zurich</b><span>Sito ufficiale</span></div>
+          </a>
+        </div>
+
+        <div class="promo">
+          <b>Vantaggi dedicati con Roca:</b> gestione prioritaria della richiesta, onboarding guidato e accesso a promozioni/condizioni riservate <i>dove disponibili</i>, perché centralizzi tutto su un unico HUB.
+        </div>
+
+        <div class="ctaRow">
+          <button class="btn btnPrimary" onclick="scrollToId('contatto')">Richiedi attivazione / preventivo</button>
+          <a class="btn btnGhost" href="https://www.admiralpay.it/servizi/" target="_blank" rel="noreferrer">Servizi ADMIRAL Pay</a>
+          <a class="btn btnGhost" href="https://www.zurich.it/business/attivita-commerciali/zurich-shop" target="_blank" rel="noreferrer">Zurich Shop (negozi)</a>
+        </div>
+
+        <p class="mini">
+          Trasparenza: questa pagina è una landing di raccolta richieste (HUB). Per condizioni, disponibilità e documentazione fanno fede i siti ufficiali dei fornitori.
+        </p>
+
+        <div class="grid3">
+          <div class="feature"><h3>Operatività rapida</h3><p>Un unico form, una sola assistenza e tracciamento della richiesta.</p></div>
+          <div class="feature"><h3>Servizi che portano clienti</h3><p>Pagamenti e ricariche aumentano traffico e frequenza di visita.</p></div>
+          <div class="feature"><h3>Protezione completa</h3><p>Soluzioni su persona, casa e attività: scegli il livello giusto.</p></div>
+        </div>
+      </div>
+
+      <aside class="card" id="contatto">
+        <h2>Richiedi contatto (HUB Roca)</h2>
+        <p class="lead" style="font-size:14px">Ti richiamiamo per ADMIRAL Pay e/o Zurich (Vita, Attività Commerciali, Casa e Famiglia).</p>
+
+        <form id="leadForm">
+          <div class="row">
+            <div><label>Nome e cognome</label><input name="full_name" placeholder="Es. Mario Rossi" required /></div>
+            <div><label>Telefono</label><input name="phone" placeholder="+39 ..." required /></div>
+          </div>
+
+          <div class="row">
+            <div><label>Email (facoltativa)</label><input name="email" type="email" placeholder="email@..." /></div>
+            <div><label>Ti interessa</label>
+              <select name="interest" required>
+                <option value="" disabled selected>Scegli…</option>
+                <option value="admiral">ADMIRAL Pay (punto vendita)</option>
+                <option value="zurich_shop">Zurich Shop (attività commerciali)</option>
+                <option value="zurich_casa">Zurich Casa e Famiglia</option>
+                <option value="zurich_vita">Zurich Vita (TCM/Protezione)</option>
+                <option value="entrambi">ADMIRAL Pay + Zurich</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div><label>Nome attività (se negozio)</label><input name="business_name" placeholder="Es. Tabacchi / Bar / Svapo..." /></div>
+            <div><label>P.IVA (facoltativa)</label><input name="vat_number" placeholder="IT..." /></div>
+          </div>
+
+          <div class="row">
+            <div><label>Città</label><input name="city" placeholder="Es. Benevento" /></div>
+            <div><label>Categoria (facoltativa)</label><input name="category" placeholder="Es. tabacchi, bar, telefonia..." /></div>
+          </div>
+
+          <div><label>Messaggio (facoltativo)</label><textarea name="notes" placeholder="Es. attivazione pagamenti/ricariche; protezione negozio/casa; info TCM..."></textarea></div>
+
+          <div class="row">
+            <div><label>Consenso contatto</label>
+              <select name="consent_contact" required>
+                <option value="" disabled selected>Scegli…</option>
+                <option value="si">Sì</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+            <div><label>Consenso privacy</label>
+              <select name="consent_privacy" required>
+                <option value="" disabled selected>Scegli…</option>
+                <option value="si">Sì</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="btn btnPrimary" type="submit">Invia richiesta</button>
+          <div class="fineprint">Inviando la richiesta, accetti di essere ricontattato da Roca Digital Services. Per prodotti/servizi e documentazione fanno fede i siti ufficiali.</div>
+        </form>
+
+        <div class="callout">Dopo l’invio si apre WhatsApp con riepilogo (modificabile).</div>
+      </aside>
+    </section>
+
+    <section class="section twoCol">
+      <div class="card" id="admiral">
+        <h2>ADMIRAL Pay (per punti vendita)</h2>
+        <p class="lead" style="font-size:14px">Servizi di pagamento e ricariche per ampliare l’offerta al banco.</p>
+        <ul>
+          <li>Catalogo servizi: bollettini e pagamenti (incluso pagoPA), MAV/RAV, bollo auto, ricariche e prodotti digitali (gift card/codici). </li>
+        </ul>
+        <div class="ctaRow">
+          <a class="btn btnGhost" href="https://www.admiralpay.it/servizi/" target="_blank" rel="noreferrer">Catalogo servizi</a>
+          <a class="btn btnGhost" href="https://www.admiralpay.it/esercente-admiral-pay/" target="_blank" rel="noreferrer">Diventa esercente</a>
+        </div>
+      </div>
+
+      <div class="card" id="zurich">
+        <h2>Zurich (Vita • Negozio • Casa)</h2>
+        <p class="lead" style="font-size:14px">Soluzioni di protezione per persona/famiglia, casa e attività commerciale.</p>
+        <ul>
+          <li><b>Zurich Shop (attività commerciali)</b>: garanzie modulari; danni al negozio (es. fuoco/eventi atmosferici gravi) e indennità giornaliera in caso di inattività. </li>
+          <li><b>Casa e Famiglia</b>: soluzioni modulari; MetroperMetro Quadro è una soluzione casa e famiglia con più sezioni/garanzie selezionabili. </li>
+          <li><b>Vita (TCM)</b>: Protecta è una TCM con capitale minimo 50.000 €, durata 5–30 anni, età 18–75 (max a scadenza 80). </li>
+        </ul>
+        <div class="ctaRow">
+          <a class="btn btnGhost" href="https://www.zurich.it/business/attivita-commerciali/zurich-shop" target="_blank" rel="noreferrer">Zurich Shop</a>
+          <a class="btn btnGhost" href="https://www.zurich.it/persone/casa" target="_blank" rel="noreferrer">Casa e Famiglia</a>
+          <a class="btn btnGhost" href="https://www.zurich.it/gruppo-zurich/zurich-italia/partner/banks-and-ifa/zurich-protecta" target="_blank" rel="noreferrer">Protecta (TCM)</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Roca Digital Services: HUB di raccolta richieste e supporto operativo. Link esterni a siti ufficiali partner.
+    </footer>
+  </div>
+
+  <script>
+    function scrollToId(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+    const WHATSAPP_NUMBER = "3.93501523543e+11"; // senza +
+
+    document.getElementById("leadForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const v = Object.fromEntries(fd.entries());
+
+      if(v.consent_contact !== "si" || v.consent_privacy !== "si"){
+        alert("Per inviare la richiesta devi selezionare Sì su Consenso contatto e Consenso privacy.");
+        return;
+      }
+
+      const text =
+`Roca HUB - Nuova richiesta
+Nome: ${v.full_name}
+Telefono: ${v.phone}
+Email: ${v.email || "-"}
+Interesse: ${v.interest}
+Attività: ${v.business_name || "-"}
+P.IVA: ${v.vat_number || "-"}
+Città: ${v.city || "-"}
+Categoria: ${v.category || "-"}
+Note: ${v.notes || "-"}`;
+
+      window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text), "_blank");
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
