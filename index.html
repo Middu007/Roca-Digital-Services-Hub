@@ -18,8 +18,7 @@
       margin:0;
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
-      background:
-        linear-gradient(135deg, #E0E7FF 0%, #DBEAFE 35%, #F0F9FF 100%);
+      background: linear-gradient(135deg, #E0E7FF 0%, #DBEAFE 35%, #F0F9FF 100%);
       min-height:100vh;
     }
     a{color:inherit;text-decoration:none}
@@ -59,7 +58,6 @@
       overflow:hidden;
     }
     .svgBox.small{width:36px;height:36px;border-radius:10px}
-    .svgBox svg{width:82%;height:82%;display:block}
     .svgBox img{width:82%;height:82%;object-fit:contain;display:block}
 
     .badge{
@@ -105,28 +103,12 @@
       background:linear-gradient(135deg,var(--accent),var(--accent2));
       box-shadow:0 4px 12px rgba(37,99,235,.25);
     }
-    .btnPrimary:hover{
-      box-shadow:0 6px 16px rgba(37,99,235,.35);
-      transform:translateY(-1px);
-    }
-    .btnGhost{
-      color:var(--accent);
-      background:transparent;
-      border:1px solid var(--line);
-    }
-    .btnGhost:hover{
-      background:var(--accent);
-      color:#fff;
-      border-color:var(--accent);
-    }
+    .btnPrimary:hover{box-shadow:0 6px 16px rgba(37,99,235,.35);transform:translateY(-1px)}
+    .btnGhost{color:var(--accent);background:transparent;border:1px solid var(--line)}
+    .btnGhost:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
 
     .grid3{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .feature{
-      background:#F9FAFB;
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:14px;
-    }
+    .feature{background:#F9FAFB;border:1px solid var(--line);border-radius:16px;padding:14px}
     .feature h3{margin:0 0 6px;font-size:15px;color:var(--text)}
     .feature p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.45}
 
@@ -157,24 +139,10 @@
       gap:12px;
       box-shadow:0 4px 12px rgba(245,158,11,.15);
     }
-    .exclusiveBanner .icon{
-      font-size:32px;
-      flex-shrink:0;
-    }
+    .exclusiveBanner .icon{font-size:32px;flex-shrink:0}
     .exclusiveBanner .content{flex:1}
-    .exclusiveBanner .content strong{
-      display:block;
-      font-size:16px;
-      color:var(--banner-text);
-      margin-bottom:4px;
-      font-weight:840;
-    }
-    .exclusiveBanner .content p{
-      margin:0;
-      color:var(--banner-text);
-      font-size:14px;
-      line-height:1.5;
-    }
+    .exclusiveBanner .content strong{display:block;font-size:16px;color:var(--banner-text);margin-bottom:4px;font-weight:840}
+    .exclusiveBanner .content p{margin:0;color:var(--banner-text);font-size:14px;line-height:1.5}
 
     .callout{
       margin-top:12px;
@@ -194,9 +162,7 @@
       background:var(--card);color:var(--text);outline:none;
       transition:border-color .15s ease;
     }
-    input:focus,select:focus,textarea:focus{
-      border-color:var(--accent);
-    }
+    input:focus,select:focus,textarea:focus{border-color:var(--accent)}
     textarea{min-height:96px;resize:vertical}
     .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     .fineprint{color:var(--muted);font-size:12px;line-height:1.5;margin-top:8px}
@@ -342,11 +308,15 @@
             </div>
           </div>
 
-          <button class="btn btnPrimary" type="submit">Invia richiesta</button>
+          <div class="ctaRow">
+            <button class="btn btnPrimary" type="submit" data-channel="whatsapp">Invia su WhatsApp</button>
+            <button class="btn btnGhost" type="submit" data-channel="email">Invia via Email</button>
+          </div>
+
           <div class="fineprint">Inviando la richiesta, accetti di essere ricontattato da Roca Digital Services. Per prodotti/servizi e documentazione fanno fede i siti ufficiali.</div>
         </form>
 
-        <div class="callout">Dopo l'invio si apre WhatsApp con riepilogo (modificabile).</div>
+        <div class="callout">Dopo l'invio scegli WhatsApp oppure Email con riepilogo (modificabile).</div>
       </aside>
     </section>
 
@@ -381,12 +351,24 @@
 
     <footer>
       Roca Digital Services: HUB di raccolta richieste e supporto operativo. Link esterni a siti ufficiali partner.
+      <div style="margin-top:10px;font-size:12px;opacity:.85;line-height:1.6;">
+        <div><b>Tel.</b> +39 350 152 3543 (WhatsApp)</div>
+        <div><b>Email</b> <a href="mailto:rocadigitalservices@gmail.com">rocadigitalservices@gmail.com</a></div>
+        <div><b>Sede</b> Benevento (BN) 82100</div>
+      </div>
     </footer>
   </div>
 
   <script>
     function scrollToId(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
     const WHATSAPP_NUMBER = "393501523543";
+
+    let chosenChannel = "whatsapp";
+    document.querySelectorAll('#leadForm button[type="submit"]').forEach(btn => {
+      btn.addEventListener("click", () => {
+        chosenChannel = btn.dataset.channel || "whatsapp";
+      });
+    });
 
     document.getElementById("leadForm").addEventListener("submit", function(e){
       e.preventDefault();
@@ -398,19 +380,20 @@
         return;
       }
 
-      const text =
-`Roca HUB - Nuova richiesta
-Nome: ${v.full_name}
-Telefono: ${v.phone}
-Email: ${v.email || "-"}
-Interesse: ${v.interest}
-Attività: ${v.business_name || "-"}
-P.IVA: ${v.vat_number || "-"}
-Città: ${v.city || "-"}
-Categoria: ${v.category || "-"}
-Note: ${v.notes || "-"}`;
+      const msg =
+`Roca HUB - Nuova richiesta\nNome: ${v.full_name}\nTel: ${v.phone}\nEmail: ${v.email || "-"}\nInteresse: ${v.interest}\nCittà: ${v.city || "-"}\nNote: ${v.notes || "-"}`;
 
-      window.open("https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text), "_blank");
+      if (chosenChannel === "email") {
+        const subject = "Roca HUB - Nuova richiesta";
+        const mailto = "mailto:rocadigitalservices@gmail.com"
+          + "?subject=" + encodeURIComponent(subject)
+          + "&body=" + encodeURIComponent(msg);
+        window.location.href = mailto;
+      } else {
+        const wa = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg);
+        window.open(wa, "_blank");
+      }
+
       e.target.reset();
     });
   </script>
